@@ -1,4 +1,6 @@
 
+import scala.collection.mutable.ArrayBuffer
+
 abstract class Obra (var autor: String, var cunho: String, var data: String){
 
 	def retornaAutor = autor
@@ -18,6 +20,13 @@ class Livro (titulo: String, autor: String,cunho: String,data: String, var tipo:
 
 }
 
+class Cd (var album: String, autor: String,cunho: String,data: String, var tipo: String, var gravadora: String) extends Obra(autor, cunho, data){
+
+
+	def toStringCD = s"Cantor: $autor, Album: $album"
+
+}
+
 object Main{
 
 	def main(args: Array[String]){
@@ -27,6 +36,18 @@ object Main{
 
 		println(livro.toString)
 		println(livro.toStringSuper)
+
+		val cd1 = new Cd("Baby", "PitBull", "Composição musical", "22/22/2012", "CD", "EMI")
+		println(cd1.toStringCD)
+		println(cd1.toStringSuper)
+
+		var itens = ArrayBuffer[Obra]()
+
+		itens += livro
+		itens += cd1
+
+		println("Teste: " + itens(0).toStringSuper)
+
 
 	}
 }
